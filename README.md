@@ -21,7 +21,7 @@ and to modify already existing abilities,items,units etc simply change their val
 lastly to test your gamemode and publish it, place this whole folder into your "*\steamapps\common\dota 2 beta\game\dota_addons" folder and rename it, then you can load into it via dota 2 workshop tools and when loaded in workshop tools you may test the gamemode via the console (to open: type `) then type dota_launch_custom_game <nameofyourmodsfolder> dota
 
 
-good luck and have fun, if you have any questions or issues whatsoever simply send me a pm via my steam: https://steamcommunity.com/id/luppylupan or more preferably: my discord: ~~Ashy~~#9041
+good luck and have fun, if you have any questions or issues whatsoever simply send me a pm via my steam: https://steamcommunity.com/id/luppylupan or more preferably: my discord: Ashy#9041
 
 credit goes to the individuals who made those awesome guides above and dota barebones.
 

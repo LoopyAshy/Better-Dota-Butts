@@ -1,5 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
-
+DEBUG_POWERS = false					-- This makes testing easier but should be turned off for release
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
@@ -10,14 +10,21 @@ CUSTOM_STAGE_TIMES = false 				-- Needed for the timers below it to function
 HERO_SELECTION_TIME = 120.0              -- How long should we let people select their hero?
 PRE_GAME_TIME = 30.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   -- How long should we let people look at the scoreboard before closing the server automatically?
+SHOWCASE_TIME = 30.0						--
+STRATEGY_TIME = 30.0						-- 
 --
 
 TREE_REGROW_TIME = 300.0                 -- How long should it take individual trees to respawn after being cut down/destroyed?
 
 GOLD_PER_TICK = 1                     -- How much gold should players get per tick?
 GOLD_TICK_TIME = 0.66                      -- How long should we wait in seconds between gold ticks?
-STARTING_GOLD = 600						-- How much gold do each player receive at start of game
-BONUS_XP_PERCENTAGE = 0				-- How much bonus XP percentage do heroes receive? (100 = 200% total xp, 200 = 300% total xp etc)
+
+CUSTOM_STARTING_GOLD = true
+--
+NORMAL_START_GOLD = 600					-- Starting Gold if picked normally -default is 600
+RANDOM_START_GOLD = 800					-- Starting Gold if randomed -default is 800
+--
+CUSTOM_XP_MULTIPLIER = 1.0				-- How much to multiple xp by
 
 RECOMMENDED_BUILDS_DISABLED = false     -- Should we disable the recommened builds for heroes
 CAMERA_DISTANCE_OVERRIDE = 1134.0       -- How far out should we allow the camera to go?  1134 is the default in Dota
@@ -26,7 +33,12 @@ MINIMAP_ICON_SIZE = 1                   -- What icon size should we use for our 
 MINIMAP_CREEP_ICON_SIZE = 1             -- What icon size should we use for creeps?
 MINIMAP_RUNE_ICON_SIZE = 1              -- What icon size should we use for runes?
 
-RUNE_SPAWN_TIME = 120                   -- How long in seconds should we wait between rune spawns?
+CUSTOM_RUNE_TIMES = false
+--
+BOUNTY_RUNE_SPAWN_TIME = 120                   -- How long in seconds should we wait between bounty rune spawns?
+POWER_RUNE_SPAWN_TIME = 120                   -- How long in seconds should we wait between power rune spawns?
+--
+
 CUSTOM_BUYBACK_COST_ENABLED = true      -- Should we use a custom buyback cost setting?
 CUSTOM_BUYBACK_COOLDOWN_ENABLED = true  -- Should we use a custom buyback time?
 BUYBACK_ENABLED = false                 -- Should we allow people to buyback when they die?
@@ -43,15 +55,14 @@ TOP_BAR_VISIBLE = true                  -- Should we display the top bar score/c
 SHOW_KILLS_ON_TOPBAR = true             -- Should we display kills only on the top bar? (No denies, suicides, kills by neutrals)  Requires USE_CUSTOM_TOP_BAR_VALUES
 
 ENABLE_TOWER_BACKDOOR_PROTECTION = true -- Should we enable backdoor protection for our towers?
-REMOVE_ILLUSIONS_ON_DEATH = false       -- Should we remove all illusions if the main hero dies?
 DISABLE_GOLD_SOUNDS = false             -- Should we disable the gold sound when players get gold?
 
 END_GAME_ON_KILLS = false                -- Should the game end after a certain number of kills?
 KILLS_TO_END_GAME_FOR_TEAM = 50         -- How many kills for a team should signify an end of game?
 
-USE_CUSTOM_HERO_LEVELS = false           -- Should we allow heroes to have custom levels?
+--USE_CUSTOM_HERO_LEVELS = false           -- Should we allow heroes to have custom levels?
 MAX_LEVEL = 25                          -- What level should we let heroes get to?
-USE_CUSTOM_XP_VALUES = false            -- Should we use custom XP values to level up heroes, or the default Dota numbers?
+USE_CUSTOM_XP_VALUES = false            -- Should we use custom XP values to level up heroes, or the default Dota numbers? this must be true to modify max level.
 
 -- Fill this table up with the required XP per level if you want to change it, keep in mind that USE_CUSTOM_XP_VALUES must be true
 -- Also if you use wish to have custom max level go above 25 then this table is required to be modified
@@ -96,13 +107,18 @@ DISABLE_STASH_PURCHASING = false        -- Should we prevent players from being 
 DISABLE_ANNOUNCER = false               -- Should we disable the announcer from working in the game?
 FORCE_PICKED_HERO = nil                 -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
 
-FIXED_RESPAWN_TIME = 5                 -- What time should we use for a fixed respawn timer?  Use -1 to keep the default dota behavior.
+FIXED_RESPAWN_TIME = -1                 -- What time should we use for a fixed respawn timer?  Use -1 to keep the default dota behavior.
 FOUNTAIN_CONSTANT_MANA_REGEN = -1       -- What should we use for the constant fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_MANA_REGEN = -1     -- What should we use for the percentage fountain mana regen?  Use -1 to keep the default dota behavior.
 FOUNTAIN_PERCENTAGE_HEALTH_REGEN = -1   -- What should we use for the percentage fountain health regen?  Use -1 to keep the default dota behavior.
 MAXIMUM_ATTACK_SPEED = 700              -- What should we use for the maximum attack speed?
 MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum attack speed?
 
+
+DISABLE_DAYNIGHT_CYCLE = false
+ENABLE_PAUSING = true
+
+CUSTOM_SCAN_COOLDOWN = -1
 
 -- NOTE: You always need at least 2 non-bounty (non-regen while broken) type runes to be able to spawn or your game will crash!
 CUSTOM_RUNE_RULES = false
@@ -118,6 +134,8 @@ ENABLED_RUNES[DOTA_RUNE_BOUNTY] = true
 MAX_NUMBER_OF_TEAMS = 2                -- How many potential teams can be in this game mode?
 USE_CUSTOM_TEAM_COLORS = false          -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = false          -- Should we use custom team colors to color the players/minimap?
+LOCK_TEAMS = false
+
 
 TEAM_COLORS = {}                        -- If USE_CUSTOM_TEAM_COLORS is set, use these colors.
 TEAM_COLORS[DOTA_TEAM_GOODGUYS] = { 61, 210, 150 }  --    Teal
@@ -145,3 +163,11 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 1
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 1
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 1
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 1
+
+ADD_ON_FIRST_SPAWN_ITEMS = {
+	--{"item_heart", 1}, -- itemname, amount
+	--{"item_travel_boots_2", 1}
+}
+ADD_ON_FIRST_SPAWN_MODIFIERS = {
+	--{"ItemStatConverter", "modifiers/unusedmodifiers/ItemStatConverter.lua", {}, true} -- modifiername, modifierscriptfile, modifierparams, custommodifier?(is this a custom modifier if not modifierscriptfile will be ignored)
+}

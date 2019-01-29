@@ -72,10 +72,22 @@ end
 
   The hero parameter is the hero entity that just spawned in
 ]]
-LinkLuaModifier( "XPModifier", "modifiers/XPModifier.lua", LUA_MODIFIER_MOTION_NONE )
 
 function GameMode:OnHeroInGame(hero)
-  hero:AddNewModifier(hero, nil, "XPModifier", nil)
+  if CUSTOM_STARTING_GOLD then
+    HandleCustomStartingGold(hero)
+  end
+  for k,v in ipairs(ADD_ON_FIRST_SPAWN_ITEMS) do
+    for i = 1, v[2], 1 do
+      hero:AddItemByName(v[1])
+    end
+  end
+  for k,v in ipairs(ADD_ON_FIRST_SPAWN_MODIFIERS) do
+    if v[4] == true then
+      LinkLuaModifier( v[1], v[2], LUA_MODIFIER_MOTION_NONE )
+    end
+    hero:AddNewModifier(hero, nil, v[1], v[3])
+  end
 end
 
 function GameMode:OnCourierInGame(courier)
@@ -105,6 +117,24 @@ end
 ]]
 function GameMode:OnGameInProgress()
 end
+
+
+function HandleCustomStartingGold(hero)
+  if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+    hero:SetGold(NORMAL_START_GOLD, false)
+  else
+    if hero:IsRealHero() then
+      if PlayerResource:HasRandomed(hero:GetPlayerID()) then
+        PlayerResource:ModifyGold(hero:GetPlayerID(), RANDOM_START_GOLD-hero:GetGold(), false, 0)
+      else
+        PlayerResource:ModifyGold(hero:GetPlayerID(), NORMAL_START_GOLD-hero:GetGold(), false, 0)
+      end
+    end
+  end
+end
+
+
+
 
 
 

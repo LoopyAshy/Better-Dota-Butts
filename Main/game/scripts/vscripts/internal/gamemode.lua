@@ -9,20 +9,23 @@ function GameMode:_InitGameMode()
   GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
   GameRules:SetPreGameTime( PRE_GAME_TIME)
   GameRules:SetPostGameTime( POST_GAME_TIME )
+  GameRules:SetShowcaseTime( SHOWCASE_TIME )
+  GameRules:SetStrategyTime( STRATEGY_TIME )
   end
   GameRules:SetTreeRegrowTime( TREE_REGROW_TIME )
   GameRules:SetUseCustomHeroXPValues ( USE_CUSTOM_XP_VALUES )
   GameRules:SetGoldPerTick(GOLD_PER_TICK)
   GameRules:SetGoldTickTime(GOLD_TICK_TIME)
-  GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME)
+  if CUSTOM_RUNE_TIMES then
+    GameRules:SetBountyRuneSpawnInterval(BOUNTY_RUNE_SPAWN_TIME)
+    GameRules:SetPowerRuneSpawnInterval(POWER_RUNE_SPAWN_TIME)
+  end
+
   GameRules:SetUseBaseGoldBountyOnHeroes(USE_STANDARD_HERO_GOLD_BOUNTY)
   GameRules:SetHeroMinimapIconScale( MINIMAP_ICON_SIZE )
   GameRules:SetCreepMinimapIconScale( MINIMAP_CREEP_ICON_SIZE )
   GameRules:SetRuneMinimapIconScale( MINIMAP_RUNE_ICON_SIZE )
-
-  if STARTING_GOLD ~= 600 then
-    GameRules:SetStartingGold(STARTING_GOLD)
-  end
+  GameRules:LockCustomGameSetupTeamAssignment(LOCK_TEAMS)
 
   GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
@@ -142,7 +145,6 @@ function GameMode:_CaptureGameMode()
     mode:SetBuybackEnabled( BUYBACK_ENABLED )
     mode:SetTopBarTeamValuesOverride ( USE_CUSTOM_TOP_BAR_VALUES )
     mode:SetTopBarTeamValuesVisible( TOP_BAR_VISIBLE )
-    mode:SetUseCustomHeroLevels ( USE_CUSTOM_HERO_LEVELS )
     mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     if USE_CUSTOM_XP_VALUES == true then
     mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
@@ -153,7 +155,6 @@ function GameMode:_CaptureGameMode()
 
     mode:SetFogOfWarDisabled(DISABLE_FOG_OF_WAR_ENTIRELY)
     mode:SetGoldSoundDisabled( DISABLE_GOLD_SOUNDS )
-    mode:SetRemoveIllusionsOnDeath( REMOVE_ILLUSIONS_ON_DEATH )
 
     mode:SetAlwaysShowPlayerInventory( SHOW_ONLY_PLAYER_INVENTORY )
     mode:SetAnnouncerDisabled( DISABLE_ANNOUNCER )
@@ -174,11 +175,20 @@ function GameMode:_CaptureGameMode()
     mode:SetModifierGainedFilter( Dynamic_Wrap( GameMode, 'ModifierFilter' ), self )
     mode:SetItemAddedToInventoryFilter( Dynamic_Wrap( GameMode, 'ItemGainedFilter' ), self )
     mode:SetAbilityTuningValueFilter( Dynamic_Wrap( GameMode, 'AbilityTuningFilter' ), self )
+    mode:SetHealingFilter(  Dynamic_Wrap( GameMode, "HealingFilter"), self)
+    mode:SetPauseEnabled(ENABLE_PAUSING)
+    if CUSTOM_SCAN_COOLDOWN ~= -1 then
+      mode:SetCustomScanCooldown(CUSTOM_SCAN_COOLDOWN)
+    end
+    mode:SetDaynightCycleDisabled(DISABLE_DAYNIGHT_CYCLE)
 
     if CUSTOM_RUNE_RULES == true then
     for rune, spawn in pairs(ENABLED_RUNES) do
       mode:SetRuneEnabled(rune, spawn)
     end
+  end
+  if CUSTOM_RUNE_TIMES ~= true and CUSTOM_RUNE_RULES ~= true then
+    mode:SetUseDefaultDOTARuneSpawnLogic(true)
   end
 
     --mode:SetUnseenFogOfWarEnabled(USE_UNSEEN_FOG_OF_WAR)
@@ -199,6 +209,9 @@ function GameMode:DamageFilter(keys)
 end
 
 function GameMode:XPFilter(keys)
+  xpvalue = keys["experience"]
+  newxpvalue = xpvalue*CUSTOM_XP_MULTIPLIER
+  keys["experience"] = newxpvalue
   return true
 end
 
@@ -215,5 +228,9 @@ function GameMode:ItemGainedFilter(keys)
 end
 
 function GameMode:AbilityTuningFilter(keys)
+  return true
+end
+
+function GameMode:HealingFilter(keys)
   return true
 end

@@ -23,7 +23,7 @@ lastly to test your gamemode and publish it, place this whole folder into your "
 
 good luck and have fun, if you have any questions or issues whatsoever simply send me a pm via my steam: https://steamcommunity.com/id/luppylupan or more preferably: my discord: Ashy#9041
 
-credit goes to the individuals who made those awesome guides above and dota barebones.
+credit goes to the individuals who made those awesome guides above, dota barebones and Darkonius.
 
 
 

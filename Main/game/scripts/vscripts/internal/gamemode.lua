@@ -168,6 +168,12 @@ function GameMode:_CaptureGameMode()
     mode:SetMaximumAttackSpeed( MAXIMUM_ATTACK_SPEED )
     mode:SetMinimumAttackSpeed( MINIMUM_ATTACK_SPEED )
     mode:SetStashPurchasingDisabled ( DISABLE_STASH_PURCHASING )
+    mode:SetDamageFilter( Dynamic_Wrap( GameMode, 'DamageFilter' ), self )
+    mode:SetModifyExperienceFilter( Dynamic_Wrap( GameMode, 'XPFilter' ), self )
+    mode:SetModifyGoldFilter( Dynamic_Wrap( GameMode, 'GoldFilter' ), self )
+    mode:SetModifierGainedFilter( Dynamic_Wrap( GameMode, 'ModifierFilter' ), self )
+    mode:SetItemAddedToInventoryFilter( Dynamic_Wrap( GameMode, 'ItemGainedFilter' ), self )
+    mode:SetAbilityTuningValueFilter( Dynamic_Wrap( GameMode, 'AbilityTuningFilter' ), self )
 
     if CUSTOM_RUNE_RULES == true then
     for rune, spawn in pairs(ENABLED_RUNES) do
@@ -179,4 +185,35 @@ function GameMode:_CaptureGameMode()
 
     self:OnFirstPlayerLoaded()
   end 
+end
+
+function GameMode:DamageFilter(keys)
+  local attacker = EntIndexToHScript(keys["entindex_attacker_const"])
+  local victim = EntIndexToHScript(keys["entindex_victim_const"])
+  local damagetype = keys["damagetype_const"]
+  local damage = keys["damage"]
+  if keys["entindex_inflictor_const"] ~= nil then
+    local ability = EntIndexToHScript(keys["entindex_inflictor_const"])
+  end
+  return true
+end
+
+function GameMode:XPFilter(keys)
+  return true
+end
+
+function GameMode:GoldFilter(keys)
+  return true
+end
+
+function GameMode:ModifierFilter(keys)
+  return true
+end
+
+function GameMode:ItemGainedFilter(keys)
+  return true
+end
+
+function GameMode:AbilityTuningFilter(keys)
+  return true
 end

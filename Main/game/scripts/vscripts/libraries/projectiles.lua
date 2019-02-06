@@ -113,6 +113,9 @@ function Projectiles:CreateProjectile(projectile)
   projectile.iPositionCP = projectile.iPositionCP or 0
   projectile.iVelocityCP = projectile.iVelocityCP or 1
   projectile.fExpireTime = projectile.fExpireTime or 10
+  projectile.visioncount = 0
+  projectile.bConeVision = projectile.ConeVision or false
+  projectile.iVisionIncreasePerTick = projectile.VisionIncreasePerTick or 100
   projectile.ControlPoints = projectile.ControlPoints or {}
   projectile.UnitBehavior = projectile.UnitBehavior or PROJECTILES_DESTROY
   if projectile.bIgnoreSource == nil then projectile.bIgnoreSource = true end
@@ -566,7 +569,12 @@ function Projectiles:CreateProjectile(projectile)
 
       if projectile.bProvidesVision then
         if projectile.currentFrame == projectile.visionTick then
+          if projectile.bConeVision == true then
+            projectile.visioncount = projectile.visioncount + 1
+            AddFOWViewer(projectile.iVisionTeamNumber, projectile.pos, projectile.iVisionRadius+(projectile.iVisionIncreasePerTick*projectile.visioncount), projectile.fVisionLingerDuration, not projectile.bFlyingVision)
+          else
           AddFOWViewer(projectile.iVisionTeamNumber, projectile.pos, projectile.iVisionRadius, projectile.fVisionLingerDuration, not projectile.bFlyingVision)
+          end
           projectile.currentFrame = 0
         else
           projectile.currentFrame = projectile.currentFrame + 1

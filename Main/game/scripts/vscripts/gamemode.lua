@@ -74,20 +74,9 @@ end
 ]]
 
 function GameMode:OnHeroInGame(hero)
-  if CUSTOM_STARTING_GOLD then
-    HandleCustomStartingGold(hero)
-  end
-  for k,v in ipairs(ADD_ON_FIRST_SPAWN_ITEMS) do
-    for i = 1, v[2], 1 do
-      hero:AddItemByName(v[1])
-    end
-  end
-  for k,v in ipairs(ADD_ON_FIRST_SPAWN_MODIFIERS) do
-    if v[4] == true then
-      LinkLuaModifier( v[1], v[2], LUA_MODIFIER_MOTION_NONE )
-    end
-    hero:AddNewModifier(hero, nil, v[1], v[3])
-  end
+  HandleStart(hero)
+  
+
 end
 
 function GameMode:OnCourierInGame(courier)
@@ -109,6 +98,24 @@ end
 function GameMode:OnIllusionInGame(illusion)
   
 end
+
+function HandleStart(hero)
+  if CUSTOM_STARTING_GOLD then
+    HandleCustomStartingGold(hero)
+  end
+  for k,v in ipairs(ADD_ON_FIRST_SPAWN_ITEMS) do
+    for i = 1, v[2], 1 do
+      hero:AddItemByName(v[1])
+    end
+  end
+  for k,v in ipairs(ADD_ON_FIRST_SPAWN_MODIFIERS) do
+    if v[4] == true then
+      LinkLuaModifier( v[1], v[2], LUA_MODIFIER_MOTION_NONE )
+    end
+    hero:AddNewModifier(hero, nil, v[1], v[3])
+  end
+end
+
 
 --[[
   This function is called once and only once when the game completely begins (about 0:00 on the clock).  At this point,

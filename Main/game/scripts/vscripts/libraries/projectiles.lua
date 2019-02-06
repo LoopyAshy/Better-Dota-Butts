@@ -114,8 +114,8 @@ function Projectiles:CreateProjectile(projectile)
   projectile.iVelocityCP = projectile.iVelocityCP or 1
   projectile.fExpireTime = projectile.fExpireTime or 10
   projectile.visioncount = 0
-  projectile.bConeVision = projectile.ConeVision or false
-  projectile.iVisionIncreasePerTick = projectile.VisionIncreasePerTick or 100
+  projectile.bConeVision = projectile.bConeVision or false
+  projectile.iVisionIncreasePerTick = projectile.iVisionIncreasePerTick or 100
   projectile.ControlPoints = projectile.ControlPoints or {}
   projectile.UnitBehavior = projectile.UnitBehavior or PROJECTILES_DESTROY
   if projectile.bIgnoreSource == nil then projectile.bIgnoreSource = true end

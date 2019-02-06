@@ -17,6 +17,18 @@ function GameMode:_OnGameRulesStateChange(keys)
         end
       end
     end
+  elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+    if FILL_EMPTY_SLOTS_WITH_BOTS == true then
+      if IsServer() then
+        SendToServerConsole("dota_bot_populate")
+      end
+    end
+  elseif newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    if START_AT_NIGHT == true then
+      if IsServer() then
+          SendToServerConsole("dota_daynightcycle_toggle")
+      end
+    end
   elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     GameMode:OnGameInProgress()
   end

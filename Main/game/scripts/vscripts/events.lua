@@ -287,10 +287,14 @@ function GameMode:OnNPCGoalReached(keys)
 end
 
 -- This function is called whenever any player sends a chat message to team or All
-function GameMode:OnPlayerChat(keys)
-  local teamonly = keys.teamonly
-  local userID = keys.userid
-  local playerID = self.vUserIds[userID]:GetPlayerID()
+-- function GameMode:OnPlayerChat(keys)
+--   local teamonly = keys.teamonly
+--   local userID = keys.userid
+--   local playerID = self.vUserIds[userID]:GetPlayerID()
 
-  local text = keys.text
-end
+--   local text = keys.text
+
+--   if CUSTOM_DEBUG_COMMANDS == true then
+--       ChatCommand:LinkCommand("-ToggleDay", "ToggleDay")
+--   end
+-- end

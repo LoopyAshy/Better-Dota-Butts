@@ -1,5 +1,5 @@
 -- In this file you can set up all the properties and settings for your game mode.
-DEBUG_POWERS = false					-- This makes testing easier but should be turned off for release
+CUSTOM_DEBUG_COMMANDS = false					-- This makes testing easier but should be turned off for release
 
 ENABLE_HERO_RESPAWN = true              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = false             -- Should the main shop contain Secret Shop items as well as regular items
@@ -46,7 +46,9 @@ BUYBACK_ENABLED = false                 -- Should we allow people to buyback whe
 DISABLE_FOG_OF_WAR_ENTIRELY = false     -- Should we disable fog of war entirely for both teams?
 USE_UNSEEN_FOG_OF_WAR = false           -- Should we make unseen and fogged areas of the map completely black until uncovered by each team? 
 
+               
                                             -- Note: DISABLE_FOG_OF_WAR_ENTIRELY must be false for USE_UNSEEN_FOG_OF_WAR to work
+FILL_EMPTY_SLOTS_WITH_BOTS = true
 USE_STANDARD_DOTA_BOT_THINKING = true  -- Should we have bots act like they would in Dota? (This requires 3 lanes, normal items, etc)
 USE_STANDARD_HERO_GOLD_BOUNTY = true    -- Should we give gold for hero kills the same as in Dota, or allow those values to be changed?
 
@@ -115,7 +117,9 @@ MAXIMUM_ATTACK_SPEED = 700              -- What should we use for the maximum at
 MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum attack speed?
 
 
-DISABLE_DAYNIGHT_CYCLE = false
+START_AT_NIGHT = true
+DISABLE_DAYNIGHT_CYCLE = true
+
 ENABLE_PAUSING = true
 
 CUSTOM_SCAN_COOLDOWN = -1
@@ -153,16 +157,16 @@ TEAM_COLORS[DOTA_TEAM_CUSTOM_8] = { 140, 42, 244 }  --    Purple
 USE_AUTOMATIC_PLAYERS_PER_TEAM = true   -- Should we set the number of players to 10 / MAX_NUMBER_OF_TEAMS?
 
 CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 1
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 1
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 1
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 0
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 0
 
 ADD_ON_FIRST_SPAWN_ITEMS = {
 	--{"item_heart", 1}, -- itemname, amount
@@ -171,3 +175,13 @@ ADD_ON_FIRST_SPAWN_ITEMS = {
 ADD_ON_FIRST_SPAWN_MODIFIERS = {
 	--{"ItemStatConverter", "modifiers/unusedmodifiers/ItemStatConverter.lua", {}, true} -- modifiername, modifierscriptfile, modifierparams, custommodifier?(is this a custom modifier if not modifierscriptfile will be ignored)
 }
+CUSTOM_CHAT_COMMANDS = {
+	{"toggleday", "ToggleDayNight", ChatCommand, "hostonly"},
+	{"togglenight", "ToggleDayNight", ChatCommand, "hostonly"},
+}
+
+function ChatCommand:ToggleDayNight(keys)
+	if IsServer() then
+		print("toggled day/night")
+	end
+end

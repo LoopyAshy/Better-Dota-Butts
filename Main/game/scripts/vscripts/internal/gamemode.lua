@@ -1,3 +1,4 @@
+require('internal/ChatCommand')
 -- This function initializes the game mode and is called before anyone loads into the game
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:_InitGameMode()
@@ -29,6 +30,7 @@ function GameMode:_InitGameMode()
 
   GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
+  ChatCommand:Init()
 
 
   -- This is multiteam configuration stuff
@@ -96,8 +98,6 @@ function GameMode:_InitGameMode()
   ListenToGameEvent("dota_tower_kill", Dynamic_Wrap(GameMode, 'OnTowerKill'), self)
   ListenToGameEvent("dota_player_selected_custom_team", Dynamic_Wrap(GameMode, 'OnPlayerSelectedCustomTeam'), self)
   ListenToGameEvent("dota_npc_goal_reached", Dynamic_Wrap(GameMode, 'OnNPCGoalReached'), self)
-
-  ListenToGameEvent("player_chat", Dynamic_Wrap(GameMode, 'OnPlayerChat'), self)
   
   --ListenToGameEvent("dota_tutorial_shop_toggled", Dynamic_Wrap(GameMode, 'OnShopToggled'), self)
 
@@ -189,6 +189,11 @@ function GameMode:_CaptureGameMode()
   end
   if CUSTOM_RUNE_TIMES ~= true and CUSTOM_RUNE_RULES ~= true then
     mode:SetUseDefaultDOTARuneSpawnLogic(true)
+  end
+  if IsServer() then
+    for k, v in ipairs(CUSTOM_CHAT_COMMANDS) do
+      ChatCommand:LinkCommand("-"..v[1], v[2], v[3], v[4]) 
+    end
   end
 
     --mode:SetUnseenFogOfWarEnabled(USE_UNSEEN_FOG_OF_WAR)

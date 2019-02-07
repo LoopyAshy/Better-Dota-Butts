@@ -41,16 +41,27 @@ function GameMode:_OnNPCSpawned(keys)
   if npc:IsRealHero() and npc.bFirstSpawned == nil then
     npc.bFirstSpawned = true
     GameMode:OnHeroInGame(npc)
-  elseif npc:IsBuilding() then
+  end
+  if npc:IsBuilding() then
     GameMode:OnBuildingInGame(npc)
-  elseif npc:IsCourier() then
+  end
+  if npc:IsTower() then
+    GameMode:OnTowerInGame(npc)
+  end
+  if npc:IsCourier() then
     GameMode:OnCourierInGame()
-  elseif npc:IsCreature() then
+  end
+  if npc:IsCreature() then
     GameMode:OnCreatureInGame(npc)
-  elseif npc:IsCreep() then
+  end
+  if npc:IsCreep() then
     GameMode:OnCreepInGame(npc)
-  elseif npc:IsIllusion() then
+  end
+  if npc:IsIllusion() then
     GameMode:OnIllusionInGame(npc)
+  end
+  if npc:IsNeutralUnitType() then
+    GameMode:OnNeutralInGame(npc)
   end
 end
 

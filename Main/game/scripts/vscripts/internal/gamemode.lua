@@ -203,13 +203,6 @@ function GameMode:_CaptureGameMode()
 end
 
 function GameMode:DamageFilter(keys)
-  local attacker = EntIndexToHScript(keys["entindex_attacker_const"])
-  local victim = EntIndexToHScript(keys["entindex_victim_const"])
-  local damagetype = keys["damagetype_const"]
-  local damage = keys["damage"]
-  if keys["entindex_inflictor_const"] ~= nil then
-    local ability = EntIndexToHScript(keys["entindex_inflictor_const"])
-  end
   return true
 end
 

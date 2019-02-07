@@ -84,11 +84,19 @@ function GameMode:OnCourierInGame(courier)
 end
 
 function GameMode:OnBuildingInGame(building)
-  
+
+end
+
+function GameMode:OnTowerInGame(tower)
+
 end
 
 function GameMode:OnCreatureInGame(creature)
-  
+
+end
+
+function GameMode:OnNeutralInGame(neutral)
+
 end
 
 function GameMode:OnCreepInGame(creep)
@@ -123,6 +131,13 @@ end
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
 ]]
 function GameMode:OnGameInProgress()
+  for k, v in ipairs(Entities:FindAllInSphere(Vector(0,0,0), 99999)) do
+    if string.match(v:GetName(), "tower") then
+      GameMode:OnTowerInGame(v)
+    end
+  end
+
+  
 end
 
 

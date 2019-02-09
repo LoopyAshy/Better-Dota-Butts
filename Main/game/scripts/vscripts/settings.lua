@@ -19,7 +19,7 @@ TREE_REGROW_TIME = 300.0                 -- How long should it take individual t
 GOLD_PER_TICK = 1                     -- How much gold should players get per tick?
 GOLD_TICK_TIME = 0.66                      -- How long should we wait in seconds between gold ticks?
 
-CUSTOM_STARTING_GOLD = true
+CUSTOM_STARTING_GOLD = false
 --
 NORMAL_START_GOLD = 600					-- Starting Gold if picked normally -default is 600
 RANDOM_START_GOLD = 800					-- Starting Gold if randomed -default is 800
@@ -39,20 +39,20 @@ BOUNTY_RUNE_SPAWN_TIME = 120                   -- How long in seconds should we 
 POWER_RUNE_SPAWN_TIME = 120                   -- How long in seconds should we wait between power rune spawns?
 --
 
-CUSTOM_BUYBACK_COST_ENABLED = true      -- Should we use a custom buyback cost setting?
-CUSTOM_BUYBACK_COOLDOWN_ENABLED = true  -- Should we use a custom buyback time?
-BUYBACK_ENABLED = false                 -- Should we allow people to buyback when they die?
+CUSTOM_BUYBACK_COST_ENABLED = false      -- Should we use a custom buyback cost setting?
+CUSTOM_BUYBACK_COOLDOWN_ENABLED = false  -- Should we use a custom buyback time?
+BUYBACK_ENABLED = true                 -- Should we allow people to buyback when they die?
 
 DISABLE_FOG_OF_WAR_ENTIRELY = false     -- Should we disable fog of war entirely for both teams?
 USE_UNSEEN_FOG_OF_WAR = false           -- Should we make unseen and fogged areas of the map completely black until uncovered by each team? 
 
                
                                             -- Note: DISABLE_FOG_OF_WAR_ENTIRELY must be false for USE_UNSEEN_FOG_OF_WAR to work
-FILL_EMPTY_SLOTS_WITH_BOTS = true
+FILL_EMPTY_SLOTS_WITH_BOTS = false
 USE_STANDARD_DOTA_BOT_THINKING = true  -- Should we have bots act like they would in Dota? (This requires 3 lanes, normal items, etc)
 USE_STANDARD_HERO_GOLD_BOUNTY = true    -- Should we give gold for hero kills the same as in Dota, or allow those values to be changed?
 
-USE_CUSTOM_TOP_BAR_VALUES = true        -- Should we do customized top bar values or use the default kill count per team?
+USE_CUSTOM_TOP_BAR_VALUES = false        -- Should we do customized top bar values or use the default kill count per team?
 TOP_BAR_VISIBLE = true                  -- Should we display the top bar score/count at all?
 SHOW_KILLS_ON_TOPBAR = true             -- Should we display kills only on the top bar? (No denies, suicides, kills by neutrals)  Requires USE_CUSTOM_TOP_BAR_VALUES
 
@@ -103,7 +103,7 @@ end
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = false               -- Should we hide the kill banners that show when a player is killed?
-LOSE_GOLD_ON_DEATH = false               -- Should we have players lose the normal amount of dota gold on death?
+LOSE_GOLD_ON_DEATH = true               -- Should we have players lose the normal amount of dota gold on death?
 SHOW_ONLY_PLAYER_INVENTORY = false      -- Should we only allow players to see their own inventory even when selecting other units?
 DISABLE_STASH_PURCHASING = false        -- Should we prevent players from being able to buy items into their stash when not at a shop?
 DISABLE_ANNOUNCER = false               -- Should we disable the announcer from working in the game?
@@ -117,12 +117,12 @@ MAXIMUM_ATTACK_SPEED = 700              -- What should we use for the maximum at
 MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum attack speed?
 
 
-START_AT_NIGHT = true
-DISABLE_DAYNIGHT_CYCLE = true
+START_AT_NIGHT = false
+DISABLE_DAYNIGHT_CYCLE = false
 
 ENABLE_PAUSING = true
 
-CUSTOM_SCAN_COOLDOWN = -1
+CUSTOM_SCAN_COOLDOWN = -1				-- -1 Means use default
 
 -- NOTE: You always need at least 2 non-bounty (non-regen while broken) type runes to be able to spawn or your game will crash!
 CUSTOM_RUNE_RULES = false
@@ -176,12 +176,12 @@ ADD_ON_FIRST_SPAWN_MODIFIERS = {
 	--{"ItemStatConverter", "modifiers/unusedmodifiers/ItemStatConverter.lua", {}, true} -- modifiername, modifierscriptfile, modifierparams, custommodifier?(is this a custom modifier if not modifierscriptfile will be ignored)
 }
 CUSTOM_CHAT_COMMANDS = {
-	{"toggleday", "ToggleDayNight", ChatCommand, "hostonly"},
-	{"togglenight", "ToggleDayNight", ChatCommand, "hostonly"},
+	--{"toggleday", "ToggleDayNight", ChatCommand, "hostonly"}, --
+	--{"togglenight", "ToggleDayNight", ChatCommand, "hostonly"}, --examples
 }
 
 function ChatCommand:ToggleDayNight(keys)
 	if IsServer() then
-		print("toggled day/night")
+		-- Do crap here.
 	end
 end

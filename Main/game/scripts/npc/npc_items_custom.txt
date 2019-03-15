@@ -3227,7 +3227,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"200"
+				"bonus_gold"			"160"
 			}
 			"04"
 			{
@@ -3503,6 +3503,7 @@
 		"ItemQuality"					"common"
 		"ItemAliases"					"bracer"
 		"ShouldBeInitiallySuggested"	"1"
+		"ShouldBeSuggested"				"1"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -3573,6 +3574,7 @@
 		"ItemQuality"					"common"
 		"ItemAliases"					"wraith band"
 		"ShouldBeInitiallySuggested"	"1"
+		"ShouldBeSuggested"				"1"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -3642,6 +3644,7 @@
 		"ItemQuality"					"common"
 		"ItemAliases"					"null talisman"
 		"ShouldBeInitiallySuggested"	"1"
+		"ShouldBeSuggested"				"1"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -10681,7 +10684,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"	
+		"ItemCost"						"600"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -10715,7 +10718,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1525"
+		"ItemCost"						"1625"
 		"ItemShopTags"					"str;agi;int;damage;move_speed;attack_speed;hard_to_tag"
 		"ItemQuality"					"rare"
 		"ItemAliases"					"drum of endurance"

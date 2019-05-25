@@ -266,6 +266,4 @@
   // "item_guardian_greaves"     "REMOVE"  
   // "item_recipe_glimmer_cape"      "REMOVE"  
   // "item_glimmer_cape"     "REMOVE"  
-
-  // You can add more below
 }

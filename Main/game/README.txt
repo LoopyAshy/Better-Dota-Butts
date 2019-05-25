@@ -15,12 +15,12 @@ however if you choose the path of lua:
 http://moddota.com/forums/discussion/135/beginners-guide-to-dota-scripting
 https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API
 
-and to modify already existing abilities,items,units etc simply change their values within scripts>npc>npc_whatufancychanging_custom.txt (I have placed all current abilities, items, heroes and units into these files)
+and to modify already existing abilities,items,units etc simply add the item from scripts>npc>npc_whatufancychanging_custom.txt and change their values within the same file. (I have placed all current abilities, items, heroes and units into the folder titled Original 7.22 in order to stop it causing issues every update.)
 
 lastly to test your gamemode and publish it, place this whole folder into your "*\steamapps\common\dota 2 beta\game\dota_addons" folder and rename it, then you can load into it via dota 2 workshop tools and when loaded in workshop tools you may test the gamemode via the console (to open: type `) then type dota_launch_custom_game <nameofyourmodsfolder> dota
 
 
-good luck and have fun, if you have any questions or issues whatsoever simply send me a pm via my steam: https://steamcommunity.com/id/luppylupan or more preferably: my discord: ~~Ashy~~#9041
+good luck and have fun, if you have any questions or issues whatsoever simply send me a pm via my steam: https://steamcommunity.com/id/luppylupan or more preferably: my discord: Ashy#9041
 
 credit goes to the individuals who made those awesome guides above and dota barebones.
 

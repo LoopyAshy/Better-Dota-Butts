@@ -16,6 +16,7 @@ STRATEGY_TIME = 30.0						--
 
 TREE_REGROW_TIME = 300.0                 -- How long should it take individual trees to respawn after being cut down/destroyed?
 
+ALTERNATIVE_GPM_GENERATOR = true	-- This exists due to how gold per tick keeps breaking
 GOLD_PER_TICK = 1                     -- How much gold should players get per tick?
 GOLD_TICK_TIME = 0.66                      -- How long should we wait in seconds between gold ticks?
 

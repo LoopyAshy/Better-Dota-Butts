@@ -122,6 +122,10 @@ function HandleStart(hero)
     end
     hero:AddNewModifier(hero, nil, v[1], v[3])
   end
+  if ALTERNATIVE_GPM_GENERATOR then
+	LinkLuaModifier( 'gold_modifier', 'modifiers/gold_modifier.lua', LUA_MODIFIER_MOTION_NONE )
+	hero:AddNewModifier(hero, nil, 'gold_modifier', {})
+  end
 end
 
 
